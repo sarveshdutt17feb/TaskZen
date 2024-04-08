@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/file")
@@ -26,5 +27,15 @@ public class FileController {
 //        byte data[] =new  byte[inputStream.available()];
 //        fileOutputStream.write();
         return "file test";
+    }
+    @PostMapping("/multiple")
+    public String uploadMultiple(@RequestParam("files") MultipartFile[] files){
+        Arrays.stream(files).forEach(file->{
+            logger.info("file original name {} ",file.getOriginalFilename());
+            logger.info("file type {} ",file.getContentType());
+            //call service to upload files : and pass file object
+        });
+        return "handling multiple files";
+
     }
 }
