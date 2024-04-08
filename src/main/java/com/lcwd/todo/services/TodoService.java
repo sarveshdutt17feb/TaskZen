@@ -50,4 +50,10 @@ public class TodoService {
 
 
     }
+
+    public void deleteTodo(int todoId) {
+        logger.info("Deleting Todo");
+        List<Todo> newList = todos.stream().filter(t->todoId!=t.getId()).collect(Collectors.toList());
+        todos=newList;
+    }
 }
