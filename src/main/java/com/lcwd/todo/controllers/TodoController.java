@@ -26,8 +26,8 @@ public class TodoController {
     @PostMapping
     public ResponseEntity<Todo> createTodo(@RequestBody Todo todo){
         //create todo
-        String str = null;
-        logger.info("{}",str.length());
+//        String str = null;
+//        logger.info("{}",str.length());
         int id = random.nextInt(999999);
         todo.setId(id);
         //create date with system default current date
@@ -73,15 +73,15 @@ public class TodoController {
     }
 
     //exception handler
-    @ExceptionHandler(NullPointerException.class)
-    public ResponseEntity<String> nullPointerExceptionHandler(NullPointerException ex){
-        System.out.println(ex.getMessage());
-        return new ResponseEntity<>("null pointer exception generated"+ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(NullPointerException.class)
+//    public ResponseEntity<String> nullPointerExceptionHandler(NullPointerException ex){
+//        System.out.println(ex.getMessage());
+//        return new ResponseEntity<>("null pointer exception generated"+ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
-    @ExceptionHandler(NumberFormatException.class)
-    public ResponseEntity<String> nullPointerExceptionHandler(NumberFormatException ex){
-        System.out.println(ex.getMessage());
-        return new ResponseEntity<>("number format exception generated"+ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(NumberFormatException.class)
+//    public ResponseEntity<String> nullPointerExceptionHandler(NumberFormatException ex){
+//        System.out.println(ex.getMessage());
+//        return new ResponseEntity<>("number format exception generated"+ex.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 }
