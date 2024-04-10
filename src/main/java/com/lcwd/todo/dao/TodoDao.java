@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class TodoDao {
@@ -62,6 +64,26 @@ public class TodoDao {
       return todo;
    }
    //get all todo from db
+   public List<Todo> getAllTodos(){
+      String query = "select * from todos";
+      List<Map<String,Object>> maps = template.queryForList(query);
+      //coverting into List<Todo>
+      List<Todo> todos = maps.stream().map((map)->{
+         Todo todo = new Todo();
+         todo.setId((int)map.get("id"));
+         todo.setTitle((String)map.get("title"));
+         todo.setContent((String)map.get("content"));
+         todo.setStatus((String)map.get("status"));
+          try {
+             todo.setAddedDate(Helper.parseDate((LocalDateTime) map.get("addedDate")));
+             todo.setTodoDate(Helper.parseDate((LocalDateTime) map.get("todoDate")));
+          } catch (ParseException e) {
+              throw new RuntimeException(e);
+          }
+         return todo;
+      }).collect(Collectors.toList());
+      return todos;
+   }
 
    //update todo
 
