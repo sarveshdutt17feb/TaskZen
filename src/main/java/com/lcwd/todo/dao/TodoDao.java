@@ -55,36 +55,38 @@ public class TodoDao {
    public Todo getTodo(int id) throws ParseException {
       //used ? parameter for dynamic values
       String query = "select * from todos where id= ? ";
-      Map<String,Object> todoData = template.queryForMap(query,id);
-      Todo todo = new Todo();
-      todo.setId((int)todoData.get("id"));
-      todo.setTitle((String)todoData.get("title"));
-      todo.setContent((String)todoData.get("content"));
-      todo.setStatus((String)todoData.get("status"));
-      todo.setTodoDate(Helper.parseDate((LocalDateTime) todoData.get("todoDate")));
-      todo.setAddedDate(Helper.parseDate((LocalDateTime) todoData.get("addedDate")));
+      Todo todo = template.queryForObject(query,new TodoRowMapper(),id);
+//      Todo todo = new Todo();
+//      todo.setId((int)todoData.get("id"));
+//      todo.setTitle((String)todoData.get("title"));
+//      todo.setContent((String)todoData.get("content"));
+//      todo.setStatus((String)todoData.get("status"));
+//      todo.setTodoDate(Helper.parseDate((LocalDateTime) todoData.get("todoDate")));
+//      todo.setAddedDate(Helper.parseDate((LocalDateTime) todoData.get("addedDate")));
 
       return todo;
    }
    //get all todo from db
    public List<Todo> getAllTodos(){
       String query = "select * from todos";
-      List<Map<String,Object>> maps = template.queryForList(query);
+      List<Todo> todos = template.query(query,new TodoRowMapper());
+//      List<Map<String,Object>> maps = template.queryForList(query);
       //coverting into List<Todo>
-      List<Todo> todos = maps.stream().map((map)->{
-         Todo todo = new Todo();
-         todo.setId((int)map.get("id"));
-         todo.setTitle((String)map.get("title"));
-         todo.setContent((String)map.get("content"));
-         todo.setStatus((String)map.get("status"));
-          try {
-             todo.setAddedDate(Helper.parseDate((LocalDateTime) map.get("addedDate")));
-             todo.setTodoDate(Helper.parseDate((LocalDateTime) map.get("todoDate")));
-          } catch (ParseException e) {
-              throw new RuntimeException(e);
-          }
-         return todo;
-      }).collect(Collectors.toList());
+//      List<Todo> todos = maps.stream().map((map)->{
+//         Todo todo = new Todo();
+//         todo.setId((int)map.get("id"));
+//         todo.setTitle((String)map.get("title"));
+//         todo.setContent((String)map.get("content"));
+//         todo.setStatus((String)map.get("status"));
+//          try {
+//             todo.setAddedDate(Helper.parseDate((LocalDateTime) map.get("addedDate")));
+//             todo.setTodoDate(Helper.parseDate((LocalDateTime) map.get("todoDate")));
+//          } catch (ParseException e) {
+//              throw new RuntimeException(e);
+//          }
+//         return todo;
+//      }).collect(Collectors.toList());
+      //we reduced code with the help of rowMapper
       return todos;
    }
 
