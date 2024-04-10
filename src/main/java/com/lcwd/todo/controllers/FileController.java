@@ -16,6 +16,7 @@ import java.util.Arrays;
 @RestController
 @RequestMapping("/file")
 public class FileController {
+
     Logger logger = LoggerFactory.getLogger(FileController.class);
     @PostMapping("/single")
     public String uploadSingle(@RequestParam("image")MultipartFile file){
