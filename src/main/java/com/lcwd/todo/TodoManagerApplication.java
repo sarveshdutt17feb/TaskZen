@@ -26,14 +26,16 @@ public class TodoManagerApplication implements CommandLineRunner {
 //		System.out.println("Application Satrted");
 //		JdbcTemplate template = todoDao.getTemplate();
 //		logger.info("template Object {} ",template);
-		Todo todo = new Todo();
-		 todo.setContent("wow its workign");
-		 todo.setTitle("This is testing spring jdbc");
-		 todo.setStatus("PENDING");
-		 todo.setId(123);
-		 todo.setAddedDate(new Date());
-		 todo.setTodoDate(new Date());
-		 todoDao.saveTodo(todo);
+//		Todo todo = new Todo();
+//		 todo.setContent("wow its workign");
+//		 todo.setTitle("This is testing spring jdbc");
+//		 todo.setStatus("PENDING");
+//		 todo.setId(123);
+//		 todo.setAddedDate(new Date());
+//		 todo.setTodoDate(new Date());
+//		 todoDao.saveTodo(todo);
+		Todo todo = todoDao.getTodo(123);
+		logger.info("Todo : {} ",todo);
 
 	}
 }

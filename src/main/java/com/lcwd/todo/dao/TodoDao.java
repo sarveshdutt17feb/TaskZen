@@ -1,11 +1,16 @@
 package com.lcwd.todo.dao;
 
+import com.lcwd.todo.helper.Helper;
 import com.lcwd.todo.models.Todo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+
+import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.util.Map;
 
 @Component
 public class TodoDao {
@@ -42,7 +47,20 @@ public class TodoDao {
    }
 
    //get single todo from db
+   public Todo getTodo(int id) throws ParseException {
+      //used ? parameter for dynamic values
+      String query = "select * from todos where id= ? ";
+      Map<String,Object> todoData = template.queryForMap(query,id);
+      Todo todo = new Todo();
+      todo.setId((int)todoData.get("id"));
+      todo.setTitle((String)todoData.get("title"));
+      todo.setContent((String)todoData.get("content"));
+      todo.setStatus((String)todoData.get("status"));
+      todo.setTodoDate(Helper.parseDate((LocalDateTime) todoData.get("todoDate")));
+      todo.setAddedDate(Helper.parseDate((LocalDateTime) todoData.get("addedDate")));
 
+      return todo;
+   }
    //get all todo from db
 
    //update todo
