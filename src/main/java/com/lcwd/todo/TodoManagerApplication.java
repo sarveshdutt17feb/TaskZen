@@ -44,8 +44,8 @@ public class TodoManagerApplication implements CommandLineRunner {
 //		todo.setTodoDate(new Date());
 //		Todo todo1 = todoDao.updateTodo(124,todo);
 //		logger.info("updated TODO {} ",todo1);
-		List<Todo> allTodos = todoDao.getAllTodos();
-		logger.info("All Todos: {} ",allTodos);
+//		List<Todo> allTodos = todoDao.getAllTodos();
+//		logger.info("All Todos: {} ",allTodos);
 //		todoDao.deleteTodo(124);
 //		todoDao.deleteMultiple(new int[]{124,125});
 
