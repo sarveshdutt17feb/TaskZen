@@ -86,6 +86,13 @@ public class TodoDao {
    }
 
    //update todo
+   public Todo updateTodo(int id,Todo newTodo){
+      String query = "update todos set title=?,content=?,status=?,addedDate=?,todoDate=? where id =?";
+      int update = template.update(query,newTodo.getTitle(),newTodo.getContent(),newTodo.getStatus(),newTodo.getAddedDate(),newTodo.getTodoDate(),newTodo.getId());
+      logger.info("UPDATED {} ",update);
+      newTodo.setId(id);
+      return newTodo;
+   }
 
    //delete todo from db
 }
