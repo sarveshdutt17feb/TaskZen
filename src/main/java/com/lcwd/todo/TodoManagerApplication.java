@@ -35,16 +35,19 @@ public class TodoManagerApplication implements CommandLineRunner {
 //		 todo.setAddedDate(new Date());
 //		 todo.setTodoDate(new Date());
 //		 todoDao.saveTodo(todo);
-		Todo todo = todoDao.getTodo(124);
-		logger.info("Todo : {} ",todo);
-		todo.setStatus("Done");
-		todo.setContent("I have to learn springBoot");
-		todo.setTitle("Learn SpringBoot");
-		todo.setAddedDate(new Date());
-		todo.setTodoDate(new Date());
-		Todo todo1 = todoDao.updateTodo(124,todo);
-		logger.info("updated TODO",todo1);
+//		Todo todo = todoDao.getTodo(124);
+//		logger.info("Todo : {} ",todo);
+//		todo.setStatus("Done");
+//		todo.setContent("I have to learn springBoot");
+//		todo.setTitle("Learn SpringBoot");
+//		todo.setAddedDate(new Date());
+//		todo.setTodoDate(new Date());
+//		Todo todo1 = todoDao.updateTodo(124,todo);
+//		logger.info("updated TODO {} ",todo1);
 //		List<Todo> allTodos = todoDao.getAllTodos();
 //		logger.info("All Todos: {} ",allTodos);
+//		todoDao.deleteTodo(124);
+		todoDao.deleteMultiple(new int[]{124,125});
+
 	}
 }
